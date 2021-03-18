@@ -173,6 +173,7 @@
     <Compile Include="Controllers\AtencionesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\MedicinaController.cs" />
     <Compile Include="Controllers\RolesAdminController.cs" />
     <Compile Include="Controllers\UserAdminController.cs" />
     <Compile Include="Global.asax.cs">
@@ -196,6 +197,7 @@
     <Compile Include="Models\Interconsulta.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Medicina.cs" />
+    <Compile Include="Models\MedicinaViewModel.cs" />
     <Compile Include="Models\Medicos.cs" />
     <Compile Include="Models\SG_ASP_1Context.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -280,6 +282,7 @@
     <Content Include="Views\Atenciones\Details.cshtml" />
     <Content Include="Views\Atenciones\Edit.cshtml" />
     <Content Include="Views\Atenciones\Index.cshtml" />
+    <Content Include="Views\Medicina\MedicinaCreate.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

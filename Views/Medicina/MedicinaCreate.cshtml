@@ -1,0 +1,158 @@
+﻿@model SG_ASP_1.Models.MedicinaCreateViewModel
+
+@{
+    ViewBag.Title = "Medicina";
+}
+
+<h2>MedicinaCreate</h2>
+<div>
+    <dl class="dl-horizontal">
+        <dt>@Html.DisplayNameFor(model => model.AtenId)</dt>
+        <dd>@Html.EditorFor(model => model.AtenId, new { htmlAttributes = new { @class = "form-control"  } })</dd>
+
+        <dt>@Html.DisplayNameFor(model => model.DocIde)</dt>
+        <dd>@Html.DisplayFor(model => model.DocIde)</dd>
+
+        <dt>@Html.DisplayNameFor(model => model.NomApe)</dt>
+        <dd>@Html.DisplayFor(model => model.NomApe)</dd>
+
+        <dt>@Html.DisplayNameFor(model => model.Empres)</dt>
+        <dd>@Html.DisplayFor(model => model.Empres)</dd>
+    </dl>
+</div>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    
+<div class="form-horizontal">
+
+    <h4>Medicina</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.LabelFor(model => model.HorIng, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.HorIng, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.HorIng, "", new { @class = "text-danger" })
+        </div>
+
+        @Html.LabelFor(model => model.HorSal, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.HorSal, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.HorSal, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Medico, "Medico", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownList("Medico", null, htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Medico, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Aptitu, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-6">
+            @Html.TextAreaFor(model => model.Aptitu, new { @class = "form-control", rows = "2" })
+            @Html.ValidationMessageFor(model => model.Aptitu, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.FecApt, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-6">
+            @Html.EditorFor(model => model.FecApt, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.FecApt, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.FecEnv, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-6">
+            @Html.EditorFor(model => model.FecEnv, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.FecEnv, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Coment, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-6">
+            @Html.TextAreaFor(model => model.Coment, new { @class = "form-control", rows = "2" })
+            @Html.ValidationMessageFor(model => model.Coment, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Observ, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-6">
+            @Html.TextAreaFor(model => model.Observ, new { @class = "form-control", rows = "2" })
+            @Html.ValidationMessageFor(model => model.Observ, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    @*------INTERCONSULTA-------*@
+    <hr />
+    <h4>Interconsultas</h4>
+    <div class="form-inline">
+        @Html.TextBox("Interconsulta", "", new { @class = "form-control text-box" })
+        <input value="Agregar" class="btn-primary" type="button" onclick="AgregaConcepto(); return false;" />
+    </div>
+
+    <div id="divInterconsultas" class="form-group">
+        <table id="tablaInterconsultas" class="table" >
+            <tr>
+                <th>Interconsultas</th>
+            </tr>
+
+        </table>
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Create" class="btn btn-default" />
+        </div>
+    </div>
+
+</div>
+  
+}
+
+<!--scripts-->
+
+<script>
+    function AgregaConcepto()
+    {
+        //variables
+        var num = 0;
+        let Interconsulta = document.getElementById("Interconsulta").value;
+        let Tabla = document.getElementById("tablaInterconsultas")
+        let TR = document.createElement("tr");
+        let TDInterconsulta = document.createElement("td");
+        //agregar tabla
+
+        TR.appendChild(TDInterconsulta);
+        TDInterconsulta.innerHTML = Interconsulta;
+
+        Tabla.appendChild(TR);
+
+        //agrefa los hidens
+        let DivInterconsultas = document.getElementById("divInterconsultas");
+        let HidenIndex = document.createElement("input");
+        let HiddenInterconsulta = document.createElement("input");
+
+        HidenIndex.name = IntCon.index;
+        HidenIndex.value = num;
+        HidenIndex.type = hidden;
+
+        HiddenInterconsulta.name = "IntCon[" + num + "].IntCon";
+        HiddenInterconsulta.value = IntCon;
+        HiddenInterconsulta.type = hidden;
+
+        DivInterconsultas.appendChild(HidenIndex);
+        DivInterconsultas.appendChild(HiddenInterconsulta);
+
+        document.getElementById("Interconsulta").value = "";
+
+    }
+</script>
