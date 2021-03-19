@@ -13,62 +13,78 @@ namespace SG_ASP_1.Models
 
         public int? AtenId { get; set; }
 
+[Display(Name ="Examenes Completos")]
         public bool ExaCom { get; set; }
 
         [StringLength(20)]
         public string ExaCom1 { get; set; }
 
+        [Display(Name ="Datos incompletos")]
         public bool DatInc { get; set; }
 
         [StringLength(20)]
         public string DatInc1 { get; set; }
 
+        [Display(Name = "Aptitud errada")]
         public bool AptErr { get; set; }
 
         [StringLength(20)]
         public string AptErr1 { get; set; }
 
+        [Display(Name = "Falta firma del médico")]
         public bool FaFiMe { get; set; }
 
         [StringLength(20)]
         public string FaFiMe1 { get; set; }
 
+        [Display(Name = "Falta firma del paciente")]
         public bool FaFiPa { get; set; }
 
         [StringLength(20)]
         public string FaFiPa1 { get; set; }
 
+        [Display(Name = "Restricciones")]
         public bool Restri { get; set; }
 
         [StringLength(20)]
         public string Restri1 { get; set; }
 
+        [Display(Name = "Controles")]
         public bool Contro { get; set; }
 
         [StringLength(20)]
         public string Contro1 { get; set; }
 
+        [Display(Name = "Diagnóstico")]
         public bool Diagno { get; set; }
 
         [StringLength(20)]
         public string Diagno1 { get; set; }
 
+        [Display(Name = "Error de llenado")]
         public bool ErrLle { get; set; }
 
         [StringLength(20)]
         public string ErrLle1 { get; set; }
 
         [StringLength(100)]
+        [Display(Name = "Observaciones")]
         public string ObNoRe { get; set; }
 
+        [Display(Name = "Sin observación")]
         public bool EmSnOb { get; set; }
 
         [StringLength(20)]
         public string EmSnOb1 { get; set; }
 
+        
+        [DataType(DataType.Time)]
+        [Display(Name = "Hora de auditoría")]
         public TimeSpan? HorAud { get; set; }
 
         [Column(TypeName = "date")]
+        [DataType(DataType.Date)]
+        [Display(Name = "Fecha de auditoría")]
         public DateTime? FecAud { get; set; }
 
         public int? Alerta { get; set; }
@@ -76,6 +92,11 @@ namespace SG_ASP_1.Models
         [StringLength(100)]
         public string UserName { get; set; }
 
+        [StringLength(50)]
+        public string Medico { get; set; }
+
         public virtual Atenciones Atenciones { get; set; }
+
+        
     }
 }

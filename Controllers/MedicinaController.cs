@@ -11,16 +11,23 @@ namespace SG_ASP_1.Controllers
     {
         private SG_ASP_1Context db = new SG_ASP_1Context();
         // GET: Medicina
-        public ActionResult MedicinaCreate (int Id=2)
+        public ActionResult MedicinaCreate (int Id)
         {
+            ViewBag.AtenId = Id;
             var aten = db.Atenciones.Find(Id);
             var Medi = new MedicinaCreateViewModel();
             Medi.AtenId = aten.Id;
-            Medi.oAteId = aten.Id;
             Medi.TipExa = aten.TipExa;
             Medi.NomApe = aten.NomApe;
             Medi.DocIde = aten.DocIde;
             Medi.Empres = aten.Empres;
+            /**/
+            Medi.HorIng = aten.Hora;
+            Medi.HorSal = TimeSpan.Parse(DateTime.Now.ToLongTimeString());
+
+            Medi.FecApt = aten.FecAte;
+            Medi.FecEnv = DateTime.Parse(DateTime.Now.ToShortDateString());
+            /*/*/
             //ViewBag.Medico = new SelectList(db.Medicos, "Medico", "Medico", atenciones.Medico);
             ViewBag.Medico = new SelectList(db.Medicos, "Medico", "Medico", Medi.Medico);
             return View(Medi);
@@ -32,7 +39,7 @@ namespace SG_ASP_1.Controllers
             if (ModelState.IsValid)
             {
                 Medicina med = new Medicina();
-                med.AtenId = model.oAteId;
+                med.AtenId = model.AtenId;
                 med.HorIng = model.HorIng;
                 med.HorSal = model.HorSal;
                 med.Medico = model.Medico;
@@ -41,15 +48,21 @@ namespace SG_ASP_1.Controllers
                 med.FecEnv = model.FecEnv;
                 med.Observ = model.Observ;
                 med.Coment = model.Coment;
-
+                med.UserName = HttpContext.User.Identity.Name;
                 db.Medicina.Add(med);
                 db.SaveChanges();
 
-                foreach (var item in model.interconsultas)
+                if (model.interconsultas!=null)
                 {
-                    var inte = new Interconsulta();
-                    inte.AtenId = model.AtenId;
-                    inte.IntCon = item.IntCon;
+                    foreach (var item in model.interconsultas)
+                    {
+                        var inte = new Interconsulta();
+                        inte.AtenId = model.AtenId;
+                        inte.IntCon = item.IntCon;
+                        inte.UserName = HttpContext.User.Identity.Name;
+                        db.Interconsulta.Add(inte);
+                        db.SaveChanges();
+                    }
                 }
 
                 return RedirectToAction("Index", "Atenciones");
@@ -58,6 +71,12 @@ namespace SG_ASP_1.Controllers
             return View(model);
         }
 
+        public ActionResult MedicinaDetails(int Id) 
+        {
+            var atenciones = db.Atenciones.Find(Id);
+            //ViewBag.Medicina = atenciones.Medicina;
+            return View(atenciones);
+        }
 
         protected override void Dispose(bool disposing)
         {

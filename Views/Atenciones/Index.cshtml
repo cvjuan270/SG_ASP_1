@@ -20,15 +20,16 @@
     }
 
 
-    <table class="table">
-        <tr >
+    <table class="table table-striped">
+        <tr class="table info">
             <th></th>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
             <th>
                 @Html.DisplayNameFor(model => model.Medicos.Medico)
             </th>
-            @*<th>
-            @Html.DisplayNameFor(model => model.Local0)
-        </th>*@
+
             <th>
                 @Html.DisplayNameFor(model => model.TipExa)
             </th>
@@ -72,16 +73,17 @@
         {
     <tr>
         <td>
-            @Html.ActionLink("Admision", "Admision", new { id = item.Id }) |
-            @Html.ActionLink("Medicina", "Medicina", new { id = item.Id })|
-            @Html.ActionLink("Detalles", "Details", new { id = item.Id }) |
+            @Html.ActionLink("Admision", "Admision", new { id = item.Id })
+            @Html.ActionLink("Medicina", "Medicina", new { id = item.Id })
+            @Html.ActionLink("Detalles", "Details", new { id = item.Id })
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Id)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Medicos.Medico)
         </td>
-        @*<td>
-            @Html.DisplayFor(modelItem => item.Local0)
-        </td>*@
+
         <td>
             @Html.DisplayFor(modelItem => item.TipExa)
         </td>

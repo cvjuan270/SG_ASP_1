@@ -52,11 +52,13 @@ namespace SG_ASP_1.Models
 
         [Column(TypeName = "date")]
         [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
         [Display(Name = "Fecha de Aptitud")]
         public DateTime? FecApt { get; set; }
 
         [Column(TypeName = "date")]
         [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
         [Display(Name = "Fecha de envio de resultados")]
         public DateTime? FecEnv { get; set; }
 

@@ -7,7 +7,7 @@ namespace SG_ASP_1.Migrations
     {
         public override void Up()
         {
-            AddColumn("dbo.AspNetRoles", "Discriminator", c => c.String(nullable: false, maxLength: 128));
+            AddColumn("dbo.AspNetRoles", "Discriminator", c => c.String(nullable: false, maxLength: 50));
         }
         
         public override void Down()

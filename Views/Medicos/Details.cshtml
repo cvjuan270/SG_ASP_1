@@ -1,0 +1,23 @@
+﻿@model SG_ASP_1.Models.Medicos
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Medicos</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt> @Html.DisplayNameFor(model => model.id)</dt>
+        <dd>@Html.DisplayFor(model => model.id)</dd>
+        <dt> @Html.DisplayNameFor(model => model.Medico)</dt>
+        <dd>@Html.DisplayFor(model => model.Medico)</dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Medico }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

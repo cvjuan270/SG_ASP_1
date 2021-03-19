@@ -45,14 +45,21 @@ namespace SG_ASP_1.Controllers
             }
             return View(atenciones.ToList());
         }
-        // GET: Atenciones
-        //public ActionResult Index()
-        //{
-        //    var atenciones = db.Atenciones.Include(a => a.Medicos);
-        //    return View(atenciones.ToList());
-        //}
 
-        // GET: Atenciones/Details/5
+
+        public ActionResult Medicina( int Id) 
+        {
+            if (!db.Medicina.Any(e => e.AtenId == Id))
+            {
+                return RedirectToAction("MedicinaCreate", "Medicina", new { Id });
+            }
+            else
+            {
+                return RedirectToAction("MedicinaDetails", "Medicina", new { Id });
+            }
+        }
+
+
         public ActionResult Details(int? id)
         {
             if (id == null)

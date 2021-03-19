@@ -29,6 +29,7 @@ namespace SG_ASP_1.Models
         [Column(TypeName = "date")]
         [DataType(DataType.Date)]
         [Display(Name = "Fecha")]
+        [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
         public DateTime? FecAte { get; set; }
 
         [StringLength(100)]

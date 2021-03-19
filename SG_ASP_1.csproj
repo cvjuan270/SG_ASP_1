@@ -171,9 +171,11 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AtencionesController.cs" />
+    <Compile Include="Controllers\AuditoriasController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MedicinaController.cs" />
+    <Compile Include="Controllers\MedicosController.cs" />
     <Compile Include="Controllers\RolesAdminController.cs" />
     <Compile Include="Controllers\UserAdminController.cs" />
     <Compile Include="Global.asax.cs">
@@ -204,6 +206,18 @@
     <Compile Include="SGMigrations\202103180251464_initial.cs" />
     <Compile Include="SGMigrations\202103180251464_initial.Designer.cs">
       <DependentUpon>202103180251464_initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SGMigrations\202103190316599_AddMedEnAuditoria.cs" />
+    <Compile Include="SGMigrations\202103190316599_AddMedEnAuditoria.Designer.cs">
+      <DependentUpon>202103190316599_AddMedEnAuditoria.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SGMigrations\202103190324517_Add_Med_Audi.cs" />
+    <Compile Include="SGMigrations\202103190324517_Add_Med_Audi.Designer.cs">
+      <DependentUpon>202103190324517_Add_Med_Audi.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SGMigrations\202103190338209_nuvacol.cs" />
+    <Compile Include="SGMigrations\202103190338209_nuvacol.Designer.cs">
+      <DependentUpon>202103190338209_nuvacol.cs</DependentUpon>
     </Compile>
     <Compile Include="SGMigrations\Configuration.cs" />
     <Compile Include="Startup.cs" />
@@ -283,6 +297,17 @@
     <Content Include="Views\Atenciones\Edit.cshtml" />
     <Content Include="Views\Atenciones\Index.cshtml" />
     <Content Include="Views\Medicina\MedicinaCreate.cshtml" />
+    <Content Include="Views\Medicina\MedicinaDetails.cshtml" />
+    <Content Include="Views\Medicos\Create.cshtml" />
+    <Content Include="Views\Medicos\Delete.cshtml" />
+    <Content Include="Views\Medicos\Details.cshtml" />
+    <Content Include="Views\Medicos\Edit.cshtml" />
+    <Content Include="Views\Medicos\Index.cshtml" />
+    <Content Include="Views\Auditorias\Create.cshtml" />
+    <Content Include="Views\Auditorias\Delete.cshtml" />
+    <Content Include="Views\Auditorias\Details.cshtml" />
+    <Content Include="Views\Auditorias\Edit.cshtml" />
+    <Content Include="Views\Auditorias\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -309,6 +334,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="SGMigrations\202103180251464_initial.resx">
       <DependentUpon>202103180251464_initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SGMigrations\202103190316599_AddMedEnAuditoria.resx">
+      <DependentUpon>202103190316599_AddMedEnAuditoria.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SGMigrations\202103190324517_Add_Med_Audi.resx">
+      <DependentUpon>202103190324517_Add_Med_Audi.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SGMigrations\202103190338209_nuvacol.resx">
+      <DependentUpon>202103190338209_nuvacol.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

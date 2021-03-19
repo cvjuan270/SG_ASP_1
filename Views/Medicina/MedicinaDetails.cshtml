@@ -1,0 +1,191 @@
+﻿@model SG_ASP_1.Models.Atenciones
+
+@{
+    ViewBag.Title = "MedicinaDetails";
+}
+
+<h2>MedicinaDetails</h2>
+
+<div>
+    <h4>Atenciones</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Medicos.Medico)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Medicos.Medico)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Local0)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Local0)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TipExa)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TipExa)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FecAte)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FecAte)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NomApe)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NomApe)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DocIde)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DocIde)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Empres)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Empres)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SubCon)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SubCon)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Proyec)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Proyec)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Perfil)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Perfil)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Area)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Area)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PueTra)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PueTra)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PeReAd)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PeReAd)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Hora)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Hora)
+        </dd>
+
+    </dl>
+</div>
+
+
+<div>
+    <hr />
+    <h4>Medicina</h4>
+    <dl class="dl-horizontal">
+        @foreach (var item in Model.Medicina)
+        {
+            <dt>@Html.DisplayNameFor(modelItem => item.Id)</dt>
+            <dd>@Html.DisplayFor(modeItem => item.Id)</dd>
+            <dt>@Html.DisplayNameFor(modelItem => item.HorIng)</dt>
+            <dd>@Html.DisplayFor(modeItem => item.HorIng)</dd>
+            <dt>@Html.DisplayNameFor(modelItem => item.HorSal)</dt>
+            <dd>@Html.DisplayFor(modeItem => item.HorSal)</dd>
+            <dt>@Html.DisplayNameFor(modelItem => item.Medico)</dt>
+            <dd>@Html.DisplayFor(modeItem => item.Medico)</dd>
+            <dt>@Html.DisplayNameFor(modelItem => item.Aptitu)</dt>
+            <dd>@Html.DisplayFor(modeItem => item.Aptitu)</dd>
+            <dt>@Html.DisplayNameFor(modelItem => item.FecApt)</dt>
+            <dd>@Html.DisplayFor(modeItem => item.FecApt)</dd>
+            <dt>@Html.DisplayNameFor(modelItem => item.FecEnv)</dt>
+            <dd>@Html.DisplayFor(modeItem => item.FecEnv)</dd>
+            <dt>@Html.DisplayNameFor(modelItem => item.Coment)</dt>
+            <dd>@Html.DisplayFor(modeItem => item.Coment)</dd>
+            <dt>@Html.DisplayNameFor(modelItem => item.Observ)</dt>
+            <dd>@Html.DisplayFor(modeItem => item.Observ)</dd>
+        }
+    </dl>
+</div>
+<div>
+    <hr />
+    <h4>Interconsultas</h4>
+    <table class="table table-striped">
+        <tr class="table info">
+            <th>ID</th>
+            <th>Interconsulta</th>
+            <th>Fecha de envio</th>
+            <th>Personal que envió</th>
+            <th>Envio de hora de ingreso</th>
+            <th>fecha que se comunica al paciente</th>
+            <th>Personal que comunicó</th>
+            <th>fecha de levantamiento de observaciones</th>
+
+        </tr>
+
+        @foreach (var item in Model.Interconsulta)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.Id)</td>
+                <td>@Html.DisplayFor(modelItem => item.IntCon)</td>
+                <td>@Html.DisplayFor(modelItem => item.FecEnv)</td>
+                <td>@Html.DisplayFor(modelItem => item.PeEnCo)</td>
+                <td>@Html.DisplayFor(modelItem => item.EnHoIn)</td>
+                <td>@Html.DisplayFor(modelItem => item.FeCoPa)</td>
+                <td>@Html.DisplayFor(modelItem => item.PeCoPa)</td>
+                <td>@Html.DisplayFor(modelItem => item.FeLeObs)</td>
+            </tr>
+
+        }
+    </table>
+</div>
+<hr />
+    <p>
+        @Html.ActionLink("Regresar","Index","Atenciones")
+    </p>
