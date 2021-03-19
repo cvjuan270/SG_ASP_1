@@ -5,7 +5,9 @@
 }
 
 <h2>Atenciones</h2>
-
+<p>
+    @Html.ActionLink("Importar", "Create")
+</p>
 
     @using (Html.BeginForm())
     {
@@ -74,8 +76,11 @@
     <tr>
         <td>
             @Html.ActionLink("Admision", "Admision", new { id = item.Id })
-            @Html.ActionLink("Medicina", "Medicina", new { id = item.Id })
+            @Html.ActionLink("Medicína", "Medicina", new { id = item.Id })
+            @Html.ActionLink("Auditoría","Auditoria", new { id = item.Id })
+            @Html.ActionLink("Enfermería","Enfermeria",new { id = item.Id})
             @Html.ActionLink("Detalles", "Details", new { id = item.Id })
+            
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Id)

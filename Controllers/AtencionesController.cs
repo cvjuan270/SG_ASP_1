@@ -6,7 +6,9 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using System.IO;
 using SG_ASP_1.Models;
+using System.Text;
 
 namespace SG_ASP_1.Controllers
 {
@@ -77,7 +79,9 @@ namespace SG_ASP_1.Controllers
         // GET: Atenciones/Create
         public ActionResult Create()
         {
-            ViewBag.Medico = new SelectList(db.Medicos, "Medico", "Medico");
+            List<string> estado = new List<string>();
+            estado.Add("");
+            ViewBag.Estado = estado;
             return View();
         }
 
@@ -85,18 +89,77 @@ namespace SG_ASP_1.Controllers
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que quiere enlazarse. Para obtener 
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Local0,TipExa,FecAte,NomApe,DocIde,Empres,SubCon,Proyec,Perfil,Area,PueTra,PeReAd,Hora,Medico")] Atenciones atenciones)
+       // [ValidateAntiForgeryToken]
+        public ActionResult Create(HttpPostedFileBase file)
         {
-            if (ModelState.IsValid)
+            if (file!=null)
             {
-                db.Atenciones.Add(atenciones);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
+                try
+                {
+                    List<string> estado = new List<string>();
+                    estado.Add("Iniciando Importacion de datos");
+                    int n = 0;
+                    Stream st = file.InputStream;
+                    var reader = new StreamReader(st, Encoding.UTF8);
 
-            ViewBag.Medico = new SelectList(db.Medicos, "Medico", "Medico", atenciones.Medico);
-            return View(atenciones);
+                    while (reader.Peek() >= 0)
+                    {
+                        var ate = new Atenciones();
+                        string[] LineaReg = reader.ReadLine().Split('\t');
+                        ate.Id = int.Parse(LineaReg[0].ToString());
+                        ate.Local0 = LineaReg[1].ToString();
+                        ate.TipExa = LineaReg[2].ToString();
+                        ate.FecAte = DateTime.Parse(LineaReg[3].ToString());
+                        ate.NomApe = LineaReg[4].ToString();
+                        ate.DocIde = LineaReg[5].ToString();
+                        ate.Empres = LineaReg[6].ToString();
+                        ate.SubCon = LineaReg[7].ToString();
+                        ate.Proyec = LineaReg[8].ToString();
+                        ate.Perfil = LineaReg[9].ToString();
+                        ate.Area = LineaReg[10].ToString();
+                        ate.PueTra = LineaReg[11].ToString();
+                        ate.PeReAd = LineaReg[12].ToString();
+                        ate.Hora = TimeSpan.Parse(LineaReg[13].ToString());
+                        if (LineaReg[14].ToString()=="")
+                        {
+                            ate.Medico = null;
+                        }
+                        else
+                        {
+                            ate.Medico = LineaReg[14].ToString();
+                        }
+
+                        if (!db.Atenciones.Any(c=> c.Id==ate.Id))
+                        {
+                            db.Atenciones.Add(ate);
+                            db.SaveChanges();
+
+                            n++;
+                            estado.Add("Registros incertados [ID]= " + ate.Id);
+                        }
+                        else
+                        {
+                            n++;
+                            estado.Add("-------------------Registro no insertado por que ID ya existe [ID]= " + ate.Id );
+                        }
+
+                        ViewBag.Estado = estado;
+                    }
+
+                    ViewBag.Confirmacion = "Se Importaron " + n + "Registros";
+                    return View();
+                }
+                catch (Exception ex)
+                {
+                    ViewBag.Error = "Error de importacion: " + ex.Message;
+                    return View();
+                }
+            }
+            else
+            {
+                ViewBag.Error = "No se seleccionó ningun archivo";
+                return View();
+            }
         }
 
         // GET: Atenciones/Edit/5

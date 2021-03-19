@@ -71,7 +71,7 @@ namespace SG_ASP_1.Models
         [Display(Name = "Observaciones")]
         public string ObNoRe { get; set; }
 
-        [Display(Name = "Sin observación")]
+        [Display(Name = "Emo sin observaciones")]
         public bool EmSnOb { get; set; }
 
         [StringLength(20)]
