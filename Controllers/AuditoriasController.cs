@@ -22,28 +22,34 @@ namespace SG_ASP_1.Controllers
         }
 
         // GET: Auditorias/Details/5
-        public ActionResult Details(int? id)
+        public ActionResult Details(int? Id)
         {
-            if (id == null)
+            if (Id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Auditoria auditoria = db.Auditoria.Find(id);
-            if (auditoria == null)
+            var ate = db.Atenciones.Find(Id);
+            var aud = db.Auditoria.Where(c=>c.AtenId ==Id);
+            Auditoria auditoria = new Auditoria();
+            if (aud == null)
             {
                 return HttpNotFound();
+            }
+            foreach (var item in aud)
+            {
+                auditoria = item;
             }
             return View(auditoria);
         }
 
         // GET: Auditorias/Create
-        public ActionResult Create(int id = 2)
+        public ActionResult Create(int Id)
         {
-            var aten = db.Atenciones.Find(id);
+            var aten = db.Atenciones.Find(Id);
             var audi = new Auditoria();
             audi.AtenId = aten.Id;
 
-            ViewBag.AtenId = id;
+            ViewBag.AtenId = Id;
             ViewBag.DocIde = aten.DocIde;
             ViewBag.NomApe = aten.NomApe;
             ViewBag.Empres = aten.Empres;

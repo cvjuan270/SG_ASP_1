@@ -61,6 +61,17 @@ namespace SG_ASP_1.Controllers
             }
         }
 
+        public ActionResult Auditoria( int Id) 
+        {
+            if (!db.Auditoria.Any(e=> e.AtenId == Id))
+            {
+                return RedirectToAction("Create", "Auditorias", new { Id });
+            }
+            else
+            {
+                return RedirectToAction("Details", "Auditorias", new { Id });
+            }
+        }
 
         public ActionResult Details(int? id)
         {

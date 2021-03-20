@@ -6,24 +6,40 @@
 
 <h2>Atenciones</h2>
 <p>
-    @Html.ActionLink("Importar", "Create")
+    @Html.ActionLink("Importar Datos", "Create")
 </p>
 
     @using (Html.BeginForm())
     {
     <p class="form-inline">
-        Desde: @Html.TextBox("FecIni", String.Format("{0:dd/MM/yyyy}", DateTime.Now), new { @class = "form-control datepicker", @type = "datetime" })
-        Hasta:@Html.TextBox("FecFin", String.Format("{0:dd/MM/yyyy}", DateTime.Now), new { @class = "form-control datepicker", @type = "datetime" })<br /><br />
-        Nombre:@Html.TextBox("BuscarNombre", "", new { @class = "form-control text-box" })
-        DNI:@Html.TextBox("Dni", "", new { @class = "form-control text-box" })
-        Empresa:@Html.TextBox("Empres", "", new { @class = "form-control text-box" })<br /><br />
-        <input type="submit" value="Buscar" class="btn btn-primary" />
+        <table class="table">
+            <thead>
+                <tr><td>Filtar</td></tr>
+            </thead>
+            <tr>
+                <td>Desde:@Html.TextBox("FecIni", String.Format("{0:dd/MM/yyyy}", DateTime.Now), new { @class = "form-control datepicker", @type = "datetime" })</td>
+                <td>Hasta:@Html.TextBox("FecFin", String.Format("{0:dd/MM/yyyy}", DateTime.Now), new { @class = "form-control datepicker", @type = "datetime" })</td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>@Html.TextBox("Dni", "", new { placeholder="DNI", @class = "form-control text-box" })</td>
+                <td>@Html.TextBox("BuscarNombre", "", new { placeholder="Nombre y/ó apellido",@class = "form-control text-box" })</td>
+            </tr>
+            <tr>
+                <td>@Html.TextBox("Empres", "", new {placeholder="Empresa", @class = "form-control text-box" })</td>
+                <td>
+                        <input style="vertical-align:central" type="submit" value="Buscar" class="btn btn-primary" />
+                </td>
+            </tr>
+        </table>
     </p>
     }
 
 
-    <table class="table table-striped">
-        <tr class="table info">
+    <table class=" table table-bordered table-striped">
+        <tr>
             <th></th>
             <th>
                 @Html.DisplayNameFor(model => model.Id)
@@ -75,7 +91,7 @@
         {
     <tr>
         <td>
-            @Html.ActionLink("Admision", "Admision", new { id = item.Id })
+            @Html.ActionLink("Admision", "Admision", new { id = item.Id })<br />
             @Html.ActionLink("Medicína", "Medicina", new { id = item.Id })
             @Html.ActionLink("Auditoría","Auditoria", new { id = item.Id })
             @Html.ActionLink("Enfermería","Enfermeria",new { id = item.Id})
@@ -95,7 +111,7 @@
         <td>
             @Html.DisplayFor(modelItem => item.FecAte)
         </td>
-        <td>
+        <td width="100px">
             @Html.DisplayFor(modelItem => item.NomApe)
         </td>
         <td>
