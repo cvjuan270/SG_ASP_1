@@ -73,6 +73,18 @@ namespace SG_ASP_1.Controllers
             }
         }
 
+        public ActionResult Admision(int Id)
+        {
+            if (!db.Admision.Any(e => e.AtenId == Id))
+            {
+                return RedirectToAction("Create", "Admisions", new { Id });
+            }
+            else
+            {
+                return RedirectToAction("Details", "Admisions", new { Id });
+            }
+        }
+
         public ActionResult Details(int? id)
         {
             if (id == null)

@@ -13,6 +13,7 @@ namespace SG_ASP_1.Models
 
         public int? AtenId { get; set; }
 
+        
         public TimeSpan? HorIng { get; set; }
 
         public TimeSpan? HorSal { get; set; }

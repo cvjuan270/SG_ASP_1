@@ -19,6 +19,7 @@ namespace SG_ASP_1.Models
         public string IntCon { get; set; }
 
         [Column(TypeName = "date")]
+        [DataType(DataType.Date)]
         public DateTime? FecEnv { get; set; }
 
         [StringLength(50)]
@@ -27,12 +28,14 @@ namespace SG_ASP_1.Models
         public bool EnHoIn { get; set; }
 
         [Column(TypeName = "date")]
+        [DataType(DataType.Date)]
         public DateTime? FeCoPa { get; set; }
 
         [StringLength(50)]
         public string PeCoPa { get; set; }
 
         [Column(TypeName = "date")]
+        [DataType(DataType.Date)]
         public DateTime? FeLeObs { get; set; }
 
         [StringLength(100)]
