@@ -7,83 +7,83 @@
 <h2>Create</h2>
 
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
-<div class="form-horizontal">
-    <h4>Admision</h4>
-    <hr />
-    <div class="form-group">
-        @Html.LabelFor(model => model.AtenId, htmlAttributes: new {  @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.AtenId, new { htmlAttributes = new { @readonly = "readonly", @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.AtenId, "", new { @class = "text-danger" })
+
+    <div class="form-horizontal">
+        <h4>Admision</h4>
+        <hr />
+        <div class="form-group">
+            @Html.LabelFor(model => model.AtenId, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.AtenId, new { htmlAttributes = new { @readonly = "readonly", @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.AtenId, "", new { @class = "text-danger" })
+            </div>
         </div>
-    </div>
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.HorIng, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.HorIng, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.HorIng, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.HorIng, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.HorIng, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.HorIng, "", new { @class = "text-danger" })
+            </div>
         </div>
-    </div>
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.HorSal, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.HorSal, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.HorSal, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.HorSal, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.HorSal, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.HorSal, "", new { @class = "text-danger" })
+            </div>
         </div>
-    </div>
 
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.Pendie, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.Pendie, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.Pendie, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.Pendie, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Pendie, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Pendie, "", new { @class = "text-danger" })
+            </div>
         </div>
-    </div>
-    <hr />
-    <div>
-        <h4>Interconsultas</h4>
-        <table class="tabe table-striped">
-            <tr class="table info">
-                <th>Id</th>
-                <th>Interconsulta</th>
-                <th>Fecha de envio</th>
-                <th>Personal que envió el correo</th>
-                <th>Envio de hoja informativa</th>
-                <th>Fecha de comicación al paciente</th>
-                <th>Personal que comunicó al paciente</th>
-                <th>Fecha de levantamiento de observaciones</th>
-            </tr>
-            @foreach (var interconsultas in Model.interconsultas)
-            {
-                <tr>
-                    <td>@Html.DisplayFor(m => interconsultas.Id)</td>
-                    <td>@Html.DisplayFor(m => interconsultas.IntCon)</td>
-                    <td>@Html.EditorFor(m => interconsultas.FecEnv, new { htmlAttributes = new { @class = "form-control" } })</td>
-                    <td>@Html.EditorFor(m => interconsultas.PeEnCo, new { htmlAttributes = new { @class = "form-control" } })</td>
-                    <td>@Html.EditorFor(m => interconsultas.EnHoIn, new { htmlAttributes = new { @class = "form-control" } })</td>
-                    <td>@Html.DisplayFor(m => interconsultas.FeCoPa, new { htmlAttributes = new { @class = "form-control" } })</td>
-                    <td>@Html.DisplayFor(m => interconsultas.PeCoPa, new { htmlAttributes = new { @class = "form-control" } })</td>
-                    <td>@Html.DisplayFor(m => interconsultas.FeLeObs, new { htmlAttributes = new { @class = "form-control" } })</td>
-
+        <hr />
+        <div>
+            <h4>Interconsultas</h4>
+            <table class="tabe table-striped">
+                <tr class="table info">
+                    <th>Id</th>
+                    <th>Interconsulta</th>
+                    <th>Fecha de envio</th>
+                    <th>Personal que envió el correo</th>
+                    <th>Envio de hoja informativa</th>
+                    <th>Fecha de comicación al paciente</th>
+                    <th>Personal que comunicó al paciente</th>
+                    <th>Fecha de levantamiento de observaciones</th>
                 </tr>
-            }
 
-        </table>
-    </div>
-
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Create" class="btn btn-default" />
+                @for (int i = 0; i < Model.interconsultas.Count; i++)
+                {
+                    <tr>
+                        <td>@Html.EditorFor(m => Model.interconsultas[i].Id, new { htmlAttributes = new { @readonly = "readonly", @class = "form-control" } })</td>
+                        <td>@Html.EditorFor(m => Model.interconsultas[i].IntCon, new { htmlAttributes = new { @readonly = "readonly", @class = "form-control" } })</td>
+                        <td>@Html.EditorFor(m => Model.interconsultas[i].FecEnv, new { htmlAttributes = new { @class = "form-control" } })</td>
+                        <td>@Html.EditorFor(m => Model.interconsultas[i].PeEnCo, new { htmlAttributes = new { @class = "form-control" } })</td>
+                        <td>@Html.EditorFor(m => Model.interconsultas[i].EnHoIn, new { htmlAttributes = new { @class = "form-control" } })</td>
+                        <td>@Html.EditorFor(m => Model.interconsultas[i].FeCoPa, new { htmlAttributes = new { @readonly = "readonly", @class = "form-control" } })</td>
+                        <td>@Html.EditorFor(m => Model.interconsultas[i].PeCoPa, new { htmlAttributes = new { @readonly = "readonly", @class = "form-control" } })</td>
+                        <td>@Html.EditorFor(m => Model.interconsultas[i].FeLeObs, new { htmlAttributes = new { @readonly = "readonly", @class = "form-control" } })</td>
+                    </tr>
+                }
+            </table>
+        </div>
+        <hr />
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Guardar" class="btn btn-primary" />
+            </div>
         </div>
     </div>
-</div>
+
 }
 
 <div>

@@ -34,6 +34,9 @@ namespace SG_ASP_1.Models
         [Display(Name = "Pendientes")]
         public string Pendie { get; set; }
 
+        [Display(Name = "Usuario")]
+        public string UserName { get; set; }
+
         public List<Interconsulta> interconsultas { get; set; }
     }
 }

@@ -22,18 +22,42 @@ namespace SG_ASP_1.Controllers
         }
 
         // GET: Admisions/Details/5
-        public ActionResult Details(int? id)
+        public ActionResult Details(int? Id)
         {
-            if (id == null)
+            if (Id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Admision admision = db.Admision.Find(id);
-            if (admision == null)
+
+            var ate = db.Atenciones.Find(Id);
+            var adm = new Admision();
+            List<Interconsulta> inter = new List<Interconsulta>();
+            var admVM = new AdmisionCreateViewModel();
+            foreach (var item in ate.Admision)
+            {
+                adm = item;
+            }
+            foreach (var item in ate.Interconsulta)
+            {
+                inter.Add(item);
+            }
+
+            admVM.AtenId = ate.Id;
+            admVM.Id = adm.Id;
+
+            admVM.DocIde = ate.DocIde;
+            admVM.NomApe = ate.NomApe;
+            admVM.Empres = ate.Empres;
+            admVM.HorIng = adm.HorIng;
+            admVM.HorSal = adm.HorSal;
+            admVM.Pendie = adm.Pendie;
+            admVM.interconsultas = inter;
+
+            if (admVM == null)
             {
                 return HttpNotFound();
             }
-            return View(admision);
+            return View(admVM);
         }
 
         // GET: Admisions/Create
@@ -74,13 +98,15 @@ namespace SG_ASP_1.Controllers
                 adm.HorIng = admisionVM.HorIng;
                 adm.HorSal = admisionVM.HorSal;
                 adm.Pendie = admisionVM.Pendie;
-            adm.Usuari = HttpContext.User.Identity.Name;
+                adm.Usuari = "lorem";
+                adm.UserName = HttpContext.User.Identity.Name;
                 db.Admision.Add(adm);
                 db.SaveChanges();
                 if (admisionVM.interconsultas != null)
                 {
                     foreach (var item in admisionVM.interconsultas)
                     {
+                        item.AtenId = admisionVM.AtenId;
                         db.Entry(item).State = EntityState.Modified;
                         db.SaveChanges();
                     }
@@ -146,6 +172,11 @@ namespace SG_ASP_1.Controllers
             db.Admision.Remove(admision);
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+        public ActionResult Atenciones() 
+        {
+            return RedirectToAction("Index", "Atenciones");
         }
 
         protected override void Dispose(bool disposing)

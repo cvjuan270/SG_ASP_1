@@ -1,4 +1,4 @@
-﻿@model SG_ASP_1.Models.Admision
+﻿@model SG_ASP_1.Models.AdmisionCreateViewModel
 
 @{
     ViewBag.Title = "Details";
@@ -9,14 +9,22 @@
 <div>
     <h4>Admision</h4>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Atenciones.Local0)
-        </dt>
+    <div>
+        <dl class="dl-horizontal">
+            <dt>@Html.DisplayNameFor(model => model.AtenId)</dt>
+            <dd> @Html.TextBoxFor(model => model.AtenId, new { @readonly = "readonly", @With = "100" })
+            <dt>@Html.DisplayNameFor(model => model.DocIde)</dt>
+            <dd>@Html.DisplayFor(model => model.DocIde)</dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Atenciones.Local0)
-        </dd>
+            <dt>@Html.DisplayNameFor(model => model.NomApe)</dt>
+            <dd>@Html.DisplayFor(model => model.NomApe)</dd>
+
+            <dt>@Html.DisplayNameFor(model => model.Empres)</dt>
+            <dd>@Html.DisplayFor(model => model.Empres)</dd>
+        </dl>
+    </div>
+
+    <dl class="dl-horizontal">
 
         <dt>
             @Html.DisplayNameFor(model => model.HorIng)
@@ -32,14 +40,6 @@
 
         <dd>
             @Html.DisplayFor(model => model.HorSal)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Usuari)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Usuari)
         </dd>
 
         <dt>
@@ -59,8 +59,36 @@
         </dd>
 
     </dl>
+    <div>
+        <table class="tabe table-striped">
+            <tr class="table info">
+                <th>Id</th>
+                <th>Interconsulta</th>
+                <th>Fecha de envio</th>
+                <th>Personal que envió el correo</th>
+                <th>Envio de hoja informativa</th>
+                <th>Fecha de comicación al paciente</th>
+                <th>Personal que comunicó al paciente</th>
+                <th>Fecha de levantamiento de observaciones</th>
+            </tr>
+            @for (int i = 0; i < Model.interconsultas.Count; i++)
+            {
+        <tr>
+            <td>@Html.DisplayFor(m => Model.interconsultas[i].Id, new { htmlAttributes = new { @readonly = "readonly", @class = "form-control" } })</td>
+            <td>@Html.DisplayFor(m => Model.interconsultas[i].IntCon, new { htmlAttributes = new { @readonly = "readonly", @class = "form-control" } })</td>
+            <td>@Html.DisplayFor(m => Model.interconsultas[i].FecEnv, new { htmlAttributes = new { @class = "form-control" } })</td>
+            <td>@Html.DisplayFor(m => Model.interconsultas[i].PeEnCo, new { htmlAttributes = new { @class = "form-control" } })</td>
+            <td>@Html.DisplayFor(m => Model.interconsultas[i].EnHoIn, new { htmlAttributes = new { @class = "form-control" } })</td>
+            <td>@Html.DisplayFor(m => Model.interconsultas[i].FeCoPa, new { htmlAttributes = new { @readonly = "readonly", @class = "form-control" } })</td>
+            <td>@Html.DisplayFor(m => Model.interconsultas[i].PeCoPa, new { htmlAttributes = new { @readonly = "readonly", @class = "form-control" } })</td>
+            <td>@Html.DisplayFor(m => Model.interconsultas[i].FeLeObs, new { htmlAttributes = new { @readonly = "readonly", @class = "form-control" } })</td>
+
+        </tr>
+            }
+        </table>
+    </div>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Editar", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Atenciones","Atenciones")
 </p>
