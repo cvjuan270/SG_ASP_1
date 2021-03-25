@@ -12,7 +12,7 @@
     <div>
         <dl class="dl-horizontal">
             <dt>@Html.DisplayNameFor(model => model.AtenId)</dt>
-            <dd> @Html.TextBoxFor(model => model.AtenId, new { @readonly = "readonly", @With = "100" })
+            <dd> @Html.EditorFor(model => model.AtenId, new { htmlAttributes = new { @readonly = "readonly", @class = "form-control" } })
             <dt>@Html.DisplayNameFor(model => model.DocIde)</dt>
             <dd>@Html.DisplayFor(model => model.DocIde)</dd>
 
@@ -32,13 +32,13 @@
         <div class="form-group">
             @Html.LabelFor(model => model.HorIng, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.HorIng, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.HorIng, new { htmlAttributes = new { @readonly = "readonly", @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.HorIng, "", new { @class = "text-danger" })
             </div>
 
             @Html.LabelFor(model => model.HorSal, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.HorSal, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.HorSal, new { htmlAttributes = new { @readonly = "readonly", @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.HorSal, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -46,7 +46,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Medico, "Medico", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("Medico", null, htmlAttributes: new { @class = "form-control" })
+                @Html.DropDownList("Medico", null, htmlAttributes: new { @readonly = "readonly", @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.Medico, "", new { @class = "text-danger" })
             </div>
         </div>

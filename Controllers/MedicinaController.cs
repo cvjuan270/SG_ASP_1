@@ -21,11 +21,12 @@ namespace SG_ASP_1.Controllers
             Medi.NomApe = aten.NomApe;
             Medi.DocIde = aten.DocIde;
             Medi.Empres = aten.Empres;
+            Medi.Medico = aten.Medico;
             /**/
-            Medi.HorIng = aten.Hora;
+            Medi.HorIng = TimeSpan.Parse(DateTime.Now.ToLongTimeString());
             Medi.HorSal = TimeSpan.Parse(DateTime.Now.ToLongTimeString());
-
-            Medi.FecApt = aten.FecAte;
+            /**/
+            Medi.FecApt = DateTime.Parse(DateTime.Now.ToShortDateString());
             Medi.FecEnv = DateTime.Parse(DateTime.Now.ToShortDateString());
             /*/*/
             //ViewBag.Medico = new SelectList(db.Medicos, "Medico", "Medico", atenciones.Medico);
@@ -41,7 +42,7 @@ namespace SG_ASP_1.Controllers
                 Medicina med = new Medicina();
                 med.AtenId = model.AtenId;
                 med.HorIng = model.HorIng;
-                med.HorSal = model.HorSal;
+                med.HorSal = TimeSpan.Parse(DateTime.Now.ToShortTimeString());
                 med.Medico = model.Medico;
                 med.Aptitu = model.Aptitu;
                 med.FecApt = model.FecApt;

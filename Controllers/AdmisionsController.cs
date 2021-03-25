@@ -24,40 +24,45 @@ namespace SG_ASP_1.Controllers
         // GET: Admisions/Details/5
         public ActionResult Details(int? Id)
         {
-            if (Id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
 
-            var ate = db.Atenciones.Find(Id);
-            var adm = new Admision();
-            List<Interconsulta> inter = new List<Interconsulta>();
-            var admVM = new AdmisionCreateViewModel();
-            foreach (var item in ate.Admision)
-            {
-                adm = item;
-            }
-            foreach (var item in ate.Interconsulta)
-            {
-                inter.Add(item);
-            }
+            var atenciones = db.Atenciones.Find(Id);
+            //ViewBag.Medicina = atenciones.Medicina;
+            return View(atenciones);
 
-            admVM.AtenId = ate.Id;
-            admVM.Id = adm.Id;
+            //if (Id == null)
+            //{
+            //    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            //}
 
-            admVM.DocIde = ate.DocIde;
-            admVM.NomApe = ate.NomApe;
-            admVM.Empres = ate.Empres;
-            admVM.HorIng = adm.HorIng;
-            admVM.HorSal = adm.HorSal;
-            admVM.Pendie = adm.Pendie;
-            admVM.interconsultas = inter;
+            //var ate = db.Atenciones.Find(Id);
+            //var adm = new Admision();
+            //List<Interconsulta> inter = new List<Interconsulta>();
+            //var admVM = new AdmisionCreateViewModel();
+            //foreach (var item in ate.Admision)
+            //{
+            //    adm = item;
+            //}
+            //foreach (var item in ate.Interconsulta)
+            //{
+            //    inter.Add(item);
+            //}
 
-            if (admVM == null)
-            {
-                return HttpNotFound();
-            }
-            return View(admVM);
+            //admVM.AtenId = ate.Id;
+            //admVM.Id = adm.Id;
+
+            //admVM.DocIde = ate.DocIde;
+            //admVM.NomApe = ate.NomApe;
+            //admVM.Empres = ate.Empres;
+            //admVM.HorIng = adm.HorIng;
+            //admVM.HorSal = adm.HorSal;
+            //admVM.Pendie = adm.Pendie;
+            //admVM.interconsultas = inter;
+
+            //if (admVM == null)
+            //{
+            //    return HttpNotFound();
+            //}
+            //return View(admVM);
         }
 
         // GET: Admisions/Create
