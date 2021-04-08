@@ -123,17 +123,37 @@ namespace SG_ASP_1.Controllers
         // GET: Admisions/Edit/5
         public ActionResult Edit(int? id)
         {
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Admision admision = db.Admision.Find(id);
-            if (admision == null)
+            var ate = db.Atenciones.Find(id);
+            var adm = new Admision();
+            var admVM = new AdmisionCreateViewModel();
+            List<Interconsulta> Inter = new List<Interconsulta>();
+
+            foreach (var item in ate.Admision)
+            {
+                adm = item;
+            }
+            if (adm == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.AtenId = new SelectList(db.Atenciones, "Id", "Local0", admision.AtenId);
-            return View(admision);
+            foreach (var item in ate.Interconsulta)
+            {
+                Inter.Add(item);
+            }
+
+
+            admVM.Id = adm.Id;
+            admVM.Pendie = adm.Pendie;
+            admVM.UserName = adm.UserName;
+            admVM.interconsultas = Inter;
+           
+            
+            return View(adm);
         }
 
         // POST: Admisions/Edit/5

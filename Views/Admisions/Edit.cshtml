@@ -1,4 +1,4 @@
-﻿@model SG_ASP_1.Models.Admision
+﻿@model SG_ASP_1.Models.Atenciones
 
 @{
     ViewBag.Title = "Edit";
@@ -11,66 +11,206 @@
 {
     @Html.AntiForgeryToken()
     
-    <div class="form-horizontal">
-        <h4>Admision</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.Id)
+<div class="form-horizontal">
+    <h4>Admision</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.Id)
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.AtenId, "AtenId", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("AtenId", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.AtenId, "", new { @class = "text-danger" })
-            </div>
-        </div>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Medicos.Medico)
+        </dt>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.HorIng, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.HorIng, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.HorIng, "", new { @class = "text-danger" })
-            </div>
-        </div>
+        <dd>
+            @Html.DisplayFor(model => model.Medicos.Medico)
+        </dd>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.HorSal, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.HorSal, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.HorSal, "", new { @class = "text-danger" })
-            </div>
-        </div>
+        <dt>
+            @Html.DisplayNameFor(model => model.Local0)
+        </dt>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Usuari, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Usuari, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Usuari, "", new { @class = "text-danger" })
-            </div>
-        </div>
+        <dd>
+            @Html.DisplayFor(model => model.Local0)
+        </dd>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Pendie, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Pendie, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Pendie, "", new { @class = "text-danger" })
-            </div>
-        </div>
+        <dt>
+            @Html.DisplayNameFor(model => model.TipExa)
+        </dt>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.UserName, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
-            </div>
-        </div>
+        <dd>
+            @Html.DisplayFor(model => model.TipExa)
+        </dd>
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
-            </div>
+        <dt>
+            @Html.DisplayNameFor(model => model.FecAte)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FecAte)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NomApe)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NomApe)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DocIde)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DocIde)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Empres)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Empres)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SubCon)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SubCon)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Proyec)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Proyec)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Perfil)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Perfil)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Area)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Area)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PueTra)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PueTra)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PeReAd)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PeReAd)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Hora)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Hora)
+        </dd>
+
+    </dl>
+
+    <h4>Admisión</h4>
+    <dl class="dl-horizontal">
+
+        @foreach (var item in Model.Admision)
+        {
+            <dt>
+                @Html.DisplayNameFor(m => item.HorIng)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(m => item.HorIng)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(m => item.HorSal)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(m => item.HorSal)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(m => item.Pendie)
+            </dt>
+
+            <dd>
+                @Html.EditorFor(m => item.Pendie)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(m => item.UserName)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(m => item.UserName)
+            </dd>
+        }
+
+
+    </dl>
+
+    <h4>Interconsultas</h4>
+    <div>
+        <table class="tabe table-striped">
+            <tr class="table info">
+                <th>Id</th>
+                <th>Interconsulta</th>
+                <th>Fecha de envio</th>
+                <th>Personal que envió el correo</th>
+                <th>Envio de hoja informativa</th>
+                <th>Fecha de comicación al paciente</th>
+                <th>Personal que comunicó al paciente</th>
+                <th>Fecha de levantamiento de observaciones</th>
+            </tr>
+            @foreach (var item in Model.Interconsulta)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(m => item.Id, new { htmlAttributes = new { @readonly = "readonly", @class = "form-control" } })</td>
+                    <td>@Html.DisplayFor(m => item.Id, new { htmlAttributes = new { @readonly = "readonly", @class = "form-control" } })</td>
+                    <td>@Html.DisplayFor(m => item.IntCon, new { htmlAttributes = new { @readonly = "readonly", @class = "form-control" } })</td>
+                    <td>@Html.DisplayFor(m => item.FecEnv, new { htmlAttributes = new { @readonly = "readonly", @class = "form-control" } })</td>
+                    <td>@Html.DisplayFor(m => item.PeEnCo, new { htmlAttributes = new { @readonly = "readonly", @class = "form-control" } })</td>
+                    <td>@Html.DisplayFor(m => item.EnHoIn, new { htmlAttributes = new { @readonly = "readonly", @class = "form-control" } })</td>
+                    <td>@Html.DisplayFor(m => item.FeCoPa, new { htmlAttributes = new { @readonly = "readonly", @class = "form-control" } })</td>
+                    <td>@Html.DisplayFor(m => item.PeCoPa, new { htmlAttributes = new { @readonly = "readonly", @class = "form-control" } })</td>
+                    <td>@Html.DisplayFor(m => item.FeLeObs, new { htmlAttributes = new { @readonly = "readonly", @class = "form-control" } })</td>
+
+                </tr>
+            }
+        </table>
+    </div>
+
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Save" class="btn btn-default" />
         </div>
     </div>
+</div>
 }
 
 <div>

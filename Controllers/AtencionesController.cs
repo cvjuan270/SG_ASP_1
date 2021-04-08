@@ -85,6 +85,18 @@ namespace SG_ASP_1.Controllers
             }
         }
 
+        public ActionResult Enfermeria(int Id)
+        {
+            if (!db.Interconsulta.Any(e => e.AtenId == Id))
+            {
+                return RedirectToAction("Details", "EnfermeriaViewModels", new { Id });
+            }
+            else
+            {
+                return RedirectToAction("Create", "EnfermeriaViewModels", new { Id });
+            }
+        }
+
         public ActionResult Details(int? id)
         {
             if (id == null)

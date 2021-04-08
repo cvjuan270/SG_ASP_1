@@ -1,0 +1,50 @@
+﻿@model SG_ASP_1.Models.EnfermeriaViewModel
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>EnfermeriaViewModel</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.NomApe)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NomApe)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DocIde)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DocIde)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Empres)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Empres)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AtenId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AtenId)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

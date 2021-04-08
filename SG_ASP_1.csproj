@@ -173,6 +173,7 @@
     <Compile Include="Controllers\AdmisionsController.cs" />
     <Compile Include="Controllers\AtencionesController.cs" />
     <Compile Include="Controllers\AuditoriasController.cs" />
+    <Compile Include="Controllers\EnfermeriaViewModelsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MedicinaController.cs" />
@@ -197,6 +198,7 @@
     <Compile Include="Models\AdmisionViewModel.cs" />
     <Compile Include="Models\Atenciones.cs" />
     <Compile Include="Models\Auditoria.cs" />
+    <Compile Include="Models\EnfermeriaViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Interconsulta.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -220,6 +222,22 @@
     <Compile Include="SGMigrations\202103190338209_nuvacol.cs" />
     <Compile Include="SGMigrations\202103190338209_nuvacol.Designer.cs">
       <DependentUpon>202103190338209_nuvacol.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SGMigrations\202103311658040_AddOmiInt.cs" />
+    <Compile Include="SGMigrations\202103311658040_AddOmiInt.Designer.cs">
+      <DependentUpon>202103311658040_AddOmiInt.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SGMigrations\202103311710199_AddOmiinteconsulta.cs" />
+    <Compile Include="SGMigrations\202103311710199_AddOmiinteconsulta.Designer.cs">
+      <DependentUpon>202103311710199_AddOmiinteconsulta.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SGMigrations\202103311715572_AlterColumn.cs" />
+    <Compile Include="SGMigrations\202103311715572_AlterColumn.Designer.cs">
+      <DependentUpon>202103311715572_AlterColumn.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SGMigrations\202104082115593_Updatedb.cs" />
+    <Compile Include="SGMigrations\202104082115593_Updatedb.Designer.cs">
+      <DependentUpon>202104082115593_Updatedb.cs</DependentUpon>
     </Compile>
     <Compile Include="SGMigrations\Configuration.cs" />
     <Compile Include="Startup.cs" />
@@ -313,6 +331,11 @@
     <Content Include="Views\Admisions\Create.cshtml" />
     <Content Include="Views\Admisions\Details.cshtml" />
     <Content Include="Views\Admisions\Edit.cshtml" />
+    <Content Include="Views\EnfermeriaViewModels\Create.cshtml" />
+    <Content Include="Views\EnfermeriaViewModels\Delete.cshtml" />
+    <Content Include="Views\EnfermeriaViewModels\Details.cshtml" />
+    <Content Include="Views\EnfermeriaViewModels\Edit.cshtml" />
+    <Content Include="Views\EnfermeriaViewModels\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -348,6 +371,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="SGMigrations\202103190338209_nuvacol.resx">
       <DependentUpon>202103190338209_nuvacol.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SGMigrations\202103311658040_AddOmiInt.resx">
+      <DependentUpon>202103311658040_AddOmiInt.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SGMigrations\202103311710199_AddOmiinteconsulta.resx">
+      <DependentUpon>202103311710199_AddOmiinteconsulta.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SGMigrations\202103311715572_AlterColumn.resx">
+      <DependentUpon>202103311715572_AlterColumn.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SGMigrations\202104082115593_Updatedb.resx">
+      <DependentUpon>202104082115593_Updatedb.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

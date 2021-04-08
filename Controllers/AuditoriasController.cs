@@ -48,11 +48,15 @@ namespace SG_ASP_1.Controllers
             var aten = db.Atenciones.Find(Id);
             var audi = new Auditoria();
             audi.AtenId = aten.Id;
+            audi.Medico = aten.Medico;
+            audi.HorAud = TimeSpan.Parse(DateTime.Now.ToShortTimeString());
+            audi.FecAud = DateTime.Parse(DateTime.Now.ToShortDateString());
 
             ViewBag.AtenId = Id;
             ViewBag.DocIde = aten.DocIde;
             ViewBag.NomApe = aten.NomApe;
             ViewBag.Empres = aten.Empres;
+
             ViewBag.Medico = new SelectList(db.Medicos, "Id", "Medico");
             return View(audi);
         }
@@ -62,13 +66,17 @@ namespace SG_ASP_1.Controllers
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,AtenId,ExaCom,ExaCom1,DatInc,DatInc1,AptErr,AptErr1,FaFiMe,FaFiMe1,FaFiPa,FaFiPa1,Restri,Restri1,Contro,Contro1,Diagno,Diagno1,ErrLle,ErrLle1,ObNoRe,EmSnOb,EmSnOb1,HorAud,FecAud,Alerta,UserName,Medico")] Auditoria auditoria)
+        public ActionResult Create([Bind(Include = "Id,AtenId,ExaCom,ExaCom1,DatInc,DatInc1,AptErr,AptErr1,FaFiMe,FaFiMe1,FaFiPa,FaFiPa1,Restri,Restri1,Contro,Contro1,Diagno,Diagno1,ErrLle,ErrLle1,ObNoRe,EmSnOb,EmSnOb1,OmiInt,OmiInt1,HorAud,FecAud,Alerta,UserName,Medico")] Auditoria auditoria)
         {
             if (ModelState.IsValid)
             {
+                if (string.IsNullOrEmpty(auditoria.Medico))
+                {
+                    auditoria.Medico = "SM";
+                }
                 db.Auditoria.Add(auditoria);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index","Atenciones");
             }
 
             ViewBag.AtenId = new SelectList(db.Atenciones, "Id", "Local0", auditoria.AtenId);
@@ -96,13 +104,14 @@ namespace SG_ASP_1.Controllers
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,AtenId,ExaCom,ExaCom1,DatInc,DatInc1,AptErr,AptErr1,FaFiMe,FaFiMe1,FaFiPa,FaFiPa1,Restri,Restri1,Contro,Contro1,Diagno,Diagno1,ErrLle,ErrLle1,ObNoRe,EmSnOb,EmSnOb1,HorAud,FecAud,Alerta,UserName,Medico")] Auditoria auditoria)
+        public ActionResult Edit([Bind(Include = "Id,AtenId,ExaCom,ExaCom1,DatInc,DatInc1,AptErr,AptErr1,FaFiMe,FaFiMe1,FaFiPa,FaFiPa1,Restri,Restri1,Contro,Contro1,Diagno,Diagno1,ErrLle,ErrLle1,ObNoRe,EmSnOb,EmSnOb1,OmiInt,OmiInt1,HorAud,FecAud,Alerta,UserName,Medico")] Auditoria auditoria)
         {
             if (ModelState.IsValid)
             {
+                auditoria.UserName = HttpContext.User.Identity.Name;
                 db.Entry(auditoria).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index","Atenciones");
             }
             ViewBag.AtenId = new SelectList(db.Atenciones, "Id", "Local0", auditoria.AtenId);
             return View(auditoria);
@@ -141,6 +150,11 @@ namespace SG_ASP_1.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        public ActionResult Atenciones() 
+        {
+            return RedirectToAction("Index", "Atenciones");
         }
     }
 }

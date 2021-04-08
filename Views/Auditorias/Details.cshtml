@@ -4,10 +4,10 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<h2>Detalles</h2>
 
 <div>
-    <h4>Auditoria</h4>
+    <h4>Auditoría</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -26,10 +26,6 @@
             @Html.DisplayFor(model => model.ExaCom)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.ExaCom1)
-        </dt>
-
         <dd>
             @Html.DisplayFor(model => model.ExaCom1)
         </dd>
@@ -41,10 +37,6 @@
         <dd>
             @Html.DisplayFor(model => model.DatInc)
         </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.DatInc1)
-        </dt>
 
         <dd>
             @Html.DisplayFor(model => model.DatInc1)
@@ -58,10 +50,6 @@
             @Html.DisplayFor(model => model.AptErr)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.AptErr1)
-        </dt>
-
         <dd>
             @Html.DisplayFor(model => model.AptErr1)
         </dd>
@@ -73,10 +61,6 @@
         <dd>
             @Html.DisplayFor(model => model.FaFiMe)
         </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.FaFiMe1)
-        </dt>
 
         <dd>
             @Html.DisplayFor(model => model.FaFiMe1)
@@ -90,25 +74,13 @@
             @Html.DisplayFor(model => model.FaFiPa)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.FaFiPa1)
-        </dt>
-
         <dd>
             @Html.DisplayFor(model => model.FaFiPa1)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Restri)
-        </dt>
-
         <dd>
             @Html.DisplayFor(model => model.Restri)
         </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Restri1)
-        </dt>
 
         <dd>
             @Html.DisplayFor(model => model.Restri1)
@@ -122,10 +94,6 @@
             @Html.DisplayFor(model => model.Contro)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Contro1)
-        </dt>
-
         <dd>
             @Html.DisplayFor(model => model.Contro1)
         </dd>
@@ -137,10 +105,6 @@
         <dd>
             @Html.DisplayFor(model => model.Diagno)
         </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Diagno1)
-        </dt>
 
         <dd>
             @Html.DisplayFor(model => model.Diagno1)
@@ -154,12 +118,21 @@
             @Html.DisplayFor(model => model.ErrLle)
         </dd>
 
+        <dd>
+            @Html.DisplayFor(model => model.ErrLle1)
+        </dd>
+
+
         <dt>
-            @Html.DisplayNameFor(model => model.ErrLle1)
+            @Html.DisplayNameFor(model => model.OmiInt)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.ErrLle1)
+            @Html.DisplayFor(model => model.OmiInt)
+        </dd>
+
+        <dd>
+            @Html.DisplayFor(model => model.OmiInt1)
         </dd>
 
         <dt>
@@ -177,10 +150,6 @@
         <dd>
             @Html.DisplayFor(model => model.EmSnOb)
         </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.EmSnOb1)
-        </dt>
 
         <dd>
             @Html.DisplayFor(model => model.EmSnOb1)
@@ -203,14 +172,6 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Alerta)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Alerta)
-        </dd>
-
-        <dt>
             @Html.DisplayNameFor(model => model.UserName)
         </dt>
 
@@ -229,6 +190,6 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Editar", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Atenciones", "Atenciones")
 </p>

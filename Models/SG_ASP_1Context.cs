@@ -189,5 +189,7 @@ namespace SG_ASP_1.Models
                 .Property(e => e.Medico)
                 .IsUnicode(false);
         }
+
+        public System.Data.Entity.DbSet<SG_ASP_1.Models.EnfermeriaViewModel> EnfermeriaViewModels { get; set; }
     }
 }

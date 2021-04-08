@@ -85,6 +85,7 @@ namespace SG_ASP_1.Models
         [Column(TypeName = "date")]
         [DataType(DataType.Date)]
         [Display(Name = "Fecha de auditoría")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
         public DateTime? FecAud { get; set; }
 
         public int? Alerta { get; set; }
@@ -94,6 +95,12 @@ namespace SG_ASP_1.Models
 
         [StringLength(50)]
         public string Medico { get; set; }
+
+        [Display(Name = "Omisión de interconsulta")]
+        public bool OmiInt { get; set; }
+
+        [StringLength(20)]
+        public string OmiInt1 { get; set; }
 
         public virtual Atenciones Atenciones { get; set; }
 
