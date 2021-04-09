@@ -22,6 +22,7 @@ namespace SG_ASP_1.Models
 
 
         public int Id { get; set; }
+
         [Display(Name = "Id")]
         public int? AtenId { get; set; }
 

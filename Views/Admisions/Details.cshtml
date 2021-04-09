@@ -131,6 +131,7 @@
 
         @foreach (var item in Model.Admision)
         {
+
             <dt>
                 @Html.DisplayNameFor(m => item.HorIng)
             </dt>
@@ -199,6 +200,6 @@
     </div>
 </div>
 <p>
-    @*@Html.ActionLink("Editar", "Edit", new { id = Model.Id }) |*@
+    @Html.ActionLink("Editar", "Create", new { id = Model.Id }) |
     @Html.ActionLink("Atenciones","Atenciones")
 </p>

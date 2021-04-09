@@ -65,6 +65,10 @@ namespace IdentitySample.Models
     public class RegisterViewModel
     {
         [Required]
+        public string Nombre { get; set; }
+        [Required]
+        public string Medico { get; set; }
+        [Required]
         [EmailAddress]
         [Display(Name = "Email")]
         public string Email { get; set; }

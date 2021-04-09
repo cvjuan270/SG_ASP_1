@@ -11,6 +11,7 @@ namespace SG_ASP_1.Controllers
     {
         private SG_ASP_1Context db = new SG_ASP_1Context();
         // GET: Medicina
+        [Authorize(Roles = "Medicina,Admin")]
         public ActionResult MedicinaCreate (int Id)
         {
             ViewBag.AtenId = Id;
@@ -35,6 +36,7 @@ namespace SG_ASP_1.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Medicina,Admin")]
         public ActionResult MedicinaCreate(MedicinaCreateViewModel model) 
         {
             if (ModelState.IsValid)

@@ -14,6 +14,11 @@ namespace IdentitySample.Models
 
     public class EditUserViewModel
     {
+        [Required]
+        public string Nombre { get; set; }
+        [Required]
+        public string Medico { get; set; }
+        
         public string Id { get; set; }
 
         [Required(AllowEmptyStrings = false)]

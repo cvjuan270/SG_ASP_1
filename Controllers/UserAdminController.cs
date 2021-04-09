@@ -1,5 +1,6 @@
 ﻿using IdentitySample.Models;
 using Microsoft.AspNet.Identity.Owin;
+using SG_ASP_1.Models;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
@@ -12,6 +13,7 @@ namespace IdentitySample.Controllers
     [Authorize(Roles = "Admin")]
     public class UsersAdminController : Controller
     {
+        private SG_ASP_1Context db = new SG_ASP_1Context();
         public UsersAdminController()
         {
         }
@@ -77,6 +79,7 @@ namespace IdentitySample.Controllers
         [HttpGet]
         public async Task<ActionResult> Create()
         {
+            ViewBag.Medico = new SelectList(db.Medicos,"Medico","Medico");
             //Get the list of Roles
             ViewBag.RoleId = new SelectList(await RoleManager.Roles.ToListAsync(), "Name", "Name");
             return View();
@@ -90,7 +93,7 @@ namespace IdentitySample.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = userViewModel.Email, Email = userViewModel.Email };
+                var user = new ApplicationUser { UserName = userViewModel.Email, Email = userViewModel.Email,Nombre = userViewModel.Nombre, Medico= userViewModel.Medico };
                 var adminresult = await UserManager.CreateAsync(user, userViewModel.Password);
 
                 //Add User to the selected Roles 
@@ -125,6 +128,7 @@ namespace IdentitySample.Controllers
         [HttpGet]
         public async Task<ActionResult> Edit(string id)
         {
+            
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -136,25 +140,29 @@ namespace IdentitySample.Controllers
             }
 
             var userRoles = await UserManager.GetRolesAsync(user.Id);
-
+            ViewBag.Medico = new SelectList(db.Medicos, "Medico", "Medico");
             return View(new EditUserViewModel()
             {
                 Id = user.Id,
                 Email = user.Email,
+                Nombre = user.Nombre,
+                Medico = user.Medico,
                 RolesList = RoleManager.Roles.ToList().Select(x => new SelectListItem()
                 {
                     Selected = userRoles.Contains(x.Name),
                     Text = x.Name,
                     Value = x.Name
                 })
-            });
+            }) ;
+
+
         }
 
         //
         // POST: /Users/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "Email,Id")] EditUserViewModel editUser, params string[] selectedRole)
+        public async Task<ActionResult> Edit([Bind(Include = "Email,Id,Nombre,Medico")] EditUserViewModel editUser, params string[] selectedRole)
         {
             if (ModelState.IsValid)
             {
@@ -166,7 +174,8 @@ namespace IdentitySample.Controllers
 
                 user.UserName = editUser.Email;
                 user.Email = editUser.Email;
-
+                user.Nombre = editUser.Nombre;
+                user.Medico = editUser.Medico;
                 var userRoles = await UserManager.GetRolesAsync(user.Id);
 
                 selectedRole = selectedRole ?? new string[] { };

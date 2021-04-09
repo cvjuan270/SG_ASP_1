@@ -28,44 +28,10 @@ namespace SG_ASP_1.Controllers
             var atenciones = db.Atenciones.Find(Id);
             //ViewBag.Medicina = atenciones.Medicina;
             return View(atenciones);
-
-            //if (Id == null)
-            //{
-            //    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            //}
-
-            //var ate = db.Atenciones.Find(Id);
-            //var adm = new Admision();
-            //List<Interconsulta> inter = new List<Interconsulta>();
-            //var admVM = new AdmisionCreateViewModel();
-            //foreach (var item in ate.Admision)
-            //{
-            //    adm = item;
-            //}
-            //foreach (var item in ate.Interconsulta)
-            //{
-            //    inter.Add(item);
-            //}
-
-            //admVM.AtenId = ate.Id;
-            //admVM.Id = adm.Id;
-
-            //admVM.DocIde = ate.DocIde;
-            //admVM.NomApe = ate.NomApe;
-            //admVM.Empres = ate.Empres;
-            //admVM.HorIng = adm.HorIng;
-            //admVM.HorSal = adm.HorSal;
-            //admVM.Pendie = adm.Pendie;
-            //admVM.interconsultas = inter;
-
-            //if (admVM == null)
-            //{
-            //    return HttpNotFound();
-            //}
-            //return View(admVM);
         }
 
         // GET: Admisions/Create
+        [Authorize(Roles = "Admision,Admin")]
         public ActionResult Create(int Id)
         {
             var ate = db.Atenciones.Find(Id);
@@ -78,6 +44,17 @@ namespace SG_ASP_1.Controllers
             adm.NomApe = ate.NomApe;
             adm.HorIng = ate.Hora;
             adm.HorSal = TimeSpan.Parse(DateTime.Now.ToShortTimeString());
+
+            if (ate.Admision!=null)
+            {
+                foreach (var item in ate.Admision)
+                {
+                    adm.Id = item.Id;
+                    adm.HorIng = item.HorIng;
+                    adm.HorSal = item.HorSal;
+                    adm.Pendie = item.Pendie;
+                }
+            }
 
             foreach (var item in ate.Interconsulta)
             {
@@ -95,18 +72,38 @@ namespace SG_ASP_1.Controllers
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admision,Admin")]
         public ActionResult Create( AdmisionCreateViewModel admisionVM)
         {
             
                 var adm = new Admision();
+                var ate = db.Atenciones.Find(admisionVM.AtenId);
                 adm.AtenId = admisionVM.AtenId;
                 adm.HorIng = admisionVM.HorIng;
                 adm.HorSal = admisionVM.HorSal;
                 adm.Pendie = admisionVM.Pendie;
                 adm.Usuari = "lorem";
                 adm.UserName = HttpContext.User.Identity.Name;
+
+            if (ate.Admision.Count>0)
+            {
+                foreach (var item in ate.Admision)
+                {
+                    item.HorIng = admisionVM.HorIng;
+                    item.HorSal = admisionVM.HorSal;
+                    item.Pendie = admisionVM.Pendie;
+
+                    db.Entry(item).State = EntityState.Modified;
+                    db.SaveChanges();
+                }
+            }
+            else
+            {
                 db.Admision.Add(adm);
                 db.SaveChanges();
+            }
+
+                
                 if (admisionVM.interconsultas != null)
                 {
                     foreach (var item in admisionVM.interconsultas)
@@ -119,86 +116,7 @@ namespace SG_ASP_1.Controllers
 
                 return RedirectToAction("Index", "Atenciones");
         }
-
-        // GET: Admisions/Edit/5
-        public ActionResult Edit(int? id)
-        {
-
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            var ate = db.Atenciones.Find(id);
-            var adm = new Admision();
-            var admVM = new AdmisionCreateViewModel();
-            List<Interconsulta> Inter = new List<Interconsulta>();
-
-            foreach (var item in ate.Admision)
-            {
-                adm = item;
-            }
-            if (adm == null)
-            {
-                return HttpNotFound();
-            }
-            foreach (var item in ate.Interconsulta)
-            {
-                Inter.Add(item);
-            }
-
-
-            admVM.Id = adm.Id;
-            admVM.Pendie = adm.Pendie;
-            admVM.UserName = adm.UserName;
-            admVM.interconsultas = Inter;
-           
-            
-            return View(adm);
-        }
-
-        // POST: Admisions/Edit/5
-        // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que quiere enlazarse. Para obtener 
-        // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,AtenId,HorIng,HorSal,Usuari,Pendie,UserName")] Admision admision)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(admision).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            ViewBag.AtenId = new SelectList(db.Atenciones, "Id", "Local0", admision.AtenId);
-            return View(admision);
-        }
-
-        // GET: Admisions/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Admision admision = db.Admision.Find(id);
-            if (admision == null)
-            {
-                return HttpNotFound();
-            }
-            return View(admision);
-        }
-
-        // POST: Admisions/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            Admision admision = db.Admision.Find(id);
-            db.Admision.Remove(admision);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
-
+       
         public ActionResult Atenciones() 
         {
             return RedirectToAction("Index", "Atenciones");

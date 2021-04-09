@@ -30,6 +30,7 @@ namespace SG_ASP_1.Models
 
         [Column(TypeName = "date")]
         [DataType(DataType.Date)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
         public DateTime? FeCoPa { get; set; }
 
         [StringLength(50)]

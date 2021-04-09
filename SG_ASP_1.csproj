@@ -191,6 +191,10 @@
     <Compile Include="Migrations\202103180331173_condatos.Designer.cs">
       <DependentUpon>202103180331173_condatos.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202104091800287_addnombremedico.cs" />
+    <Compile Include="Migrations\202104091800287_addnombremedico.Designer.cs">
+      <DependentUpon>202104091800287_addnombremedico.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AdminViewModel.cs" />
@@ -330,15 +334,11 @@
     <Content Include="Views\Auditorias\Index.cshtml" />
     <Content Include="Views\Admisions\Create.cshtml" />
     <Content Include="Views\Admisions\Details.cshtml" />
-    <Content Include="Views\Admisions\Edit.cshtml" />
     <Content Include="Views\EnfermeriaViewModels\Create.cshtml" />
-    <Content Include="Views\EnfermeriaViewModels\Delete.cshtml" />
-    <Content Include="Views\EnfermeriaViewModels\Details.cshtml" />
-    <Content Include="Views\EnfermeriaViewModels\Edit.cshtml" />
-    <Content Include="Views\EnfermeriaViewModels\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Properties\PublishProfiles\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -359,6 +359,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202103180331173_condatos.resx">
       <DependentUpon>202103180331173_condatos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202104091800287_addnombremedico.resx">
+      <DependentUpon>202104091800287_addnombremedico.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SGMigrations\202103180251464_initial.resx">
       <DependentUpon>202103180251464_initial.cs</DependentUpon>

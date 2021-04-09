@@ -9,17 +9,31 @@ using System.Web.Mvc;
 using System.IO;
 using SG_ASP_1.Models;
 using System.Text;
+using IdentitySample.Models;
+using Microsoft.AspNet.Identity.Owin;
 
 namespace SG_ASP_1.Controllers
 {
     public class AtencionesController : Controller
     {
         private SG_ASP_1Context db = new SG_ASP_1Context();
-
-
+      
         // GET: Atenciones
         public ActionResult Index(DateTime? FecIni, DateTime? FecFin, string BuscarNombre, string Dni, string Empres)
         {
+            var user = HttpContext.User;
+            string nombre = user.Identity.Name;
+
+            var med = db.Database.SqlQuery<string>(string.Format("select Medico from AspNetUsers where UserName = '{0}'", nombre)).ToList();
+            string medico = null;
+            if (med.Count>0)
+            {
+                foreach (var item in med)
+                {
+                    medico = item;
+                }
+            }
+
             var atenciones = db.Atenciones.Include(a => a.Medicos);
             atenciones = from cr in db.Atenciones select cr;
 
@@ -45,11 +59,20 @@ namespace SG_ASP_1.Controllers
             {
                 atenciones = atenciones.Where(c => c.Empres.Contains(Empres));
             }
+
+            if (!String.IsNullOrEmpty(medico))
+            {
+                if (medico!="SM")
+                {
+                    atenciones = atenciones.Where(c => c.Medico.Contains(medico));
+                }
+                
+            }
             return View(atenciones.ToList());
         }
 
 
-        public ActionResult Medicina( int Id) 
+        public ActionResult Medicina(int Id)
         {
             if (!db.Medicina.Any(e => e.AtenId == Id))
             {
@@ -61,9 +84,9 @@ namespace SG_ASP_1.Controllers
             }
         }
 
-        public ActionResult Auditoria( int Id) 
+        public ActionResult Auditoria(int Id)
         {
-            if (!db.Auditoria.Any(e=> e.AtenId == Id))
+            if (!db.Auditoria.Any(e => e.AtenId == Id))
             {
                 return RedirectToAction("Create", "Auditorias", new { Id });
             }
@@ -89,7 +112,7 @@ namespace SG_ASP_1.Controllers
         {
             if (!db.Interconsulta.Any(e => e.AtenId == Id))
             {
-                return RedirectToAction("Details", "EnfermeriaViewModels", new { Id });
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest, "No se crearon interconsultas para el paciente");
             }
             else
             {
@@ -112,6 +135,7 @@ namespace SG_ASP_1.Controllers
         }
 
         // GET: Atenciones/Create
+        [Authorize(Roles ="Admin")]
         public ActionResult Create()
         {
             List<string> estado = new List<string>();
@@ -197,40 +221,7 @@ namespace SG_ASP_1.Controllers
             }
         }
 
-        // GET: Atenciones/Edit/5
-        public ActionResult Edit(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Atenciones atenciones = db.Atenciones.Find(id);
-            if (atenciones == null)
-            {
-                return HttpNotFound();
-            }
-            ViewBag.Medico = new SelectList(db.Medicos, "Medico", "Medico", atenciones.Medico);
-            return View(atenciones);
-        }
-
-        // POST: Atenciones/Edit/5
-        // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que quiere enlazarse. Para obtener 
-        // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Local0,TipExa,FecAte,NomApe,DocIde,Empres,SubCon,Proyec,Perfil,Area,PueTra,PeReAd,Hora,Medico")] Atenciones atenciones)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(atenciones).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            ViewBag.Medico = new SelectList(db.Medicos, "Medico", "Medico", atenciones.Medico);
-            return View(atenciones);
-        }
-
-        // GET: Atenciones/Delete/5
+        [Authorize(Roles ="Admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
