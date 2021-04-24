@@ -93,7 +93,8 @@ namespace IdentitySample.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = userViewModel.Email, Email = userViewModel.Email,Nombre = userViewModel.Nombre, Medico= userViewModel.Medico };
+                var user = new ApplicationUser { UserName = userViewModel.Email, Email = userViewModel.Email,Nombre = userViewModel.Nombre };
+                user.Medico = "SM";
                 var adminresult = await UserManager.CreateAsync(user, userViewModel.Password);
 
                 //Add User to the selected Roles 

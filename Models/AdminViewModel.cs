@@ -16,7 +16,7 @@ namespace IdentitySample.Models
     {
         [Required]
         public string Nombre { get; set; }
-        [Required]
+        
         public string Medico { get; set; }
         
         public string Id { get; set; }
