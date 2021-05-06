@@ -9,12 +9,18 @@ namespace SG_ASP_1.Models
     [Table("Auditoria")]
     public partial class Auditoria
     {
+        public Auditoria() 
+        {
+            ExaMedicos = new List<ExaMedico>();
+        }
         public int Id { get; set; }
 
         public int? AtenId { get; set; }
 
-[Display(Name ="Examenes Incompletos")]
+        [Display(Name ="Examenes Incompletos")]
         public bool ExaCom { get; set; }
+
+        public virtual ICollection<ExaMedico> ExaMedicos { get; set; }
 
         [StringLength(20)]
         public string ExaCom1 { get; set; }

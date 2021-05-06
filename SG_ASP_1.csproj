@@ -174,6 +174,7 @@
     <Compile Include="Controllers\AtencionesController.cs" />
     <Compile Include="Controllers\AuditoriasController.cs" />
     <Compile Include="Controllers\EnfermeriaViewModelsController.cs" />
+    <Compile Include="Controllers\ExaMedicoesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MedicinaController.cs" />
@@ -195,6 +196,10 @@
     <Compile Include="Migrations\202104091800287_addnombremedico.Designer.cs">
       <DependentUpon>202104091800287_addnombremedico.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202105060242362_EditExamenToString.cs" />
+    <Compile Include="Migrations\202105060242362_EditExamenToString.Designer.cs">
+      <DependentUpon>202105060242362_EditExamenToString.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AdminViewModel.cs" />
@@ -202,7 +207,9 @@
     <Compile Include="Models\AdmisionViewModel.cs" />
     <Compile Include="Models\Atenciones.cs" />
     <Compile Include="Models\Auditoria.cs" />
+    <Compile Include="Models\AuditoriaViewModel.cs" />
     <Compile Include="Models\EnfermeriaViewModel.cs" />
+    <Compile Include="Models\ExaMedico.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Interconsulta.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -244,6 +251,14 @@
     <Compile Include="SGMigrations\202104082115593_Updatedb.Designer.cs">
       <DependentUpon>202104082115593_Updatedb.cs</DependentUpon>
     </Compile>
+    <Compile Include="SGMigrations\202105060231333_AddExaMed.cs" />
+    <Compile Include="SGMigrations\202105060231333_AddExaMed.Designer.cs">
+      <DependentUpon>202105060231333_AddExaMed.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SGMigrations\202105060244221_AlterExaMed.cs" />
+    <Compile Include="SGMigrations\202105060244221_AlterExaMed.Designer.cs">
+      <DependentUpon>202105060244221_AlterExaMed.cs</DependentUpon>
+    </Compile>
     <Compile Include="SGMigrations\Configuration.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -252,6 +267,8 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\chosen-sprite.png" />
+    <Content Include="Content\chosen.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -259,6 +276,8 @@
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="Scripts\chosen.jquery.min.js" />
+    <Content Include="Scripts\chosen.proto.min.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
     <Content Include="Scripts\jquery-3.4.1.slim.js" />
@@ -336,6 +355,10 @@
     <Content Include="Views\Admisions\Create.cshtml" />
     <Content Include="Views\Admisions\Details.cshtml" />
     <Content Include="Views\EnfermeriaViewModels\Create.cshtml" />
+    <Content Include="Views\ExaMedicoes\Create.cshtml" />
+    <Content Include="Views\ExaMedicoes\Delete.cshtml" />
+    <Content Include="Views\ExaMedicoes\Edit.cshtml" />
+    <Content Include="Views\ExaMedicoes\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -364,6 +387,9 @@
     <EmbeddedResource Include="Migrations\202104091800287_addnombremedico.resx">
       <DependentUpon>202104091800287_addnombremedico.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202105060242362_EditExamenToString.resx">
+      <DependentUpon>202105060242362_EditExamenToString.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="SGMigrations\202103180251464_initial.resx">
       <DependentUpon>202103180251464_initial.cs</DependentUpon>
     </EmbeddedResource>
@@ -387,6 +413,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="SGMigrations\202104082115593_Updatedb.resx">
       <DependentUpon>202104082115593_Updatedb.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SGMigrations\202105060231333_AddExaMed.resx">
+      <DependentUpon>202105060231333_AddExaMed.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SGMigrations\202105060244221_AlterExaMed.resx">
+      <DependentUpon>202105060244221_AlterExaMed.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

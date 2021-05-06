@@ -191,5 +191,7 @@ namespace SG_ASP_1.Models
         }
 
         public System.Data.Entity.DbSet<SG_ASP_1.Models.EnfermeriaViewModel> EnfermeriaViewModels { get; set; }
+
+        public System.Data.Entity.DbSet<SG_ASP_1.Models.ExaMedico> ExaMedicoes { get; set; }
     }
 }

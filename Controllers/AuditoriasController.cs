@@ -46,14 +46,18 @@ namespace SG_ASP_1.Controllers
             audi.Medico = aten.Medico;
             audi.HorAud = TimeSpan.Parse(DateTime.Now.ToShortTimeString());
             audi.FecAud = DateTime.Parse(DateTime.Now.ToShortDateString());
+            /**/
 
+            var AllExam = from t in db.ExaMedicoes select t;
+            AuditoriaViewModel viewModel = new AuditoriaViewModel(audi, AllExam.ToList());
+            /**/
             ViewBag.AtenId = Id;
             ViewBag.DocIde = aten.DocIde;
             ViewBag.NomApe = aten.NomApe;
             ViewBag.Empres = aten.Empres;
-
             ViewBag.Medico = new SelectList(db.Medicos, "Id", "Medico");
-            return View(audi);
+
+            return View(viewModel);
         }
 
         // POST: Auditorias/Create
