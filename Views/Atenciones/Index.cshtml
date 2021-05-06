@@ -28,122 +28,121 @@
                 <td>@Html.TextBox("BuscarNombre", "", new { placeholder="Nombre y/ó apellido",@class = "form-control text-box" })</td>
             </tr>
             <tr>
-                <td>@Html.TextBox("Empres", "", new {placeholder="Empresa", @class = "form-control text-box" })</td>
+                <td>@Html.TextBox("Empres", "", new { placeholder = "Empresa", @class = "form-control text-box" })</td>
+                <td>@Html.TextBox("SubCon", "", new { placeholder = "Sub Contrata", @class = "form-control text-box" })</td>
                 <td>
-                        <input style="vertical-align:central" type="submit" value="Buscar" class="btn btn-primary" />
+                    <input style="vertical-align:central" type="submit" value="Buscar" class="btn btn-primary" />
                 </td>
             </tr>
         </table>
     </p>
     }
 
+<div class="container"  >
 
-    <table class="table-bordered table-striped">
-        <tr>
-            <th></th>
-            <th>
-                @Html.DisplayNameFor(model => model.Id)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Medicos.Medico)
-            </th>
 
-            <th>
-                @Html.DisplayNameFor(model => model.TipExa)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.FecAte)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.NomApe)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DocIde)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Empres)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.SubCon)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Proyec)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Perfil)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Area)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PueTra)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PeReAd)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Hora)
-            </th>
+    <table class="table table-condensed table-striped table-bordered table-condensed table-sm" >
+        <thead class="thead-dark">
+            <tr>
+                <th></th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Id)
+                </th>
 
-        </tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.TipExa)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.FecAte)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.NomApe)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DocIde)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Empres)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.SubCon)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Proyec)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Perfil)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Area)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PueTra)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PeReAd)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Hora)
+                </th>
 
-        @foreach (var item in Model)
-        {
-    <tr>
-        <td>
-            @Html.ActionLink("Admision", "Admision", new { id = item.Id })<br />
-            @Html.ActionLink("Medicína", "Medicina", new { id = item.Id })
-            @Html.ActionLink("Auditoría","Auditoria", new { id = item.Id })
-            @Html.ActionLink("Enfermería","Enfermeria",new { id = item.Id})
-            @Html.ActionLink("Detalles", "Details", new { id = item.Id })
-            
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Id)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Medicos.Medico)
-        </td>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.ActionLink("Admision", "Admision", new { id = item.Id })<br />
+                        @Html.ActionLink("Medicína", "Medicina", new { id = item.Id })
+                        @Html.ActionLink("Auditoría", "Auditoria", new { id = item.Id })
+                        @Html.ActionLink("Enfermería", "Enfermeria", new { id = item.Id })
+                        @Html.ActionLink("Detalles", "Details", new { id = item.Id })
 
-        <td>
-            @Html.DisplayFor(modelItem => item.TipExa)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.FecAte)
-        </td>
-        <td width="100px">
-            @Html.DisplayFor(modelItem => item.NomApe)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DocIde)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Empres)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.SubCon)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Proyec)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Perfil)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Area)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PueTra)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PeReAd)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Hora)
-        </td>
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Id)
+                    </td>
 
-    </tr>
-        }
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TipExa)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FecAte)
+                    </td>
+                    <td width="100px">
+                        @Html.DisplayFor(modelItem => item.NomApe)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DocIde)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Empres)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SubCon)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Proyec)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Perfil)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Area)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PueTra)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PeReAd)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Hora)
+                    </td>
 
+                </tr>
+            }
+        </tbody>
     </table>
-
+</div>

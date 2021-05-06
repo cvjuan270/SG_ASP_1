@@ -210,6 +210,7 @@
     <Compile Include="Models\MedicinaViewModel.cs" />
     <Compile Include="Models\Medicos.cs" />
     <Compile Include="Models\SG_ASP_1Context.cs" />
+    <Compile Include="Models\TipoInterconsulta.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SGMigrations\202103180251464_initial.cs" />
     <Compile Include="SGMigrations\202103180251464_initial.Designer.cs">

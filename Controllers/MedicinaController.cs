@@ -12,7 +12,7 @@ namespace SG_ASP_1.Controllers
         private SG_ASP_1Context db = new SG_ASP_1Context();
         // GET: Medicina
         [Authorize(Roles = "Medicina,Admin")]
-        public ActionResult MedicinaCreate (int Id)
+        public ActionResult MedicinaCreate(int Id)
         {
             ViewBag.AtenId = Id;
             var aten = db.Atenciones.Find(Id);
@@ -32,6 +32,11 @@ namespace SG_ASP_1.Controllers
             /*/*/
             //ViewBag.Medico = new SelectList(db.Medicos, "Medico", "Medico", atenciones.Medico);
             ViewBag.Medico = new SelectList(db.Medicos, "Medico", "Medico", Medi.Medico);
+            var LisApt = new List<SelectListItem>();
+            LisApt.Add(new SelectListItem() { Text = "Apto", Value = "Apto" });
+            LisApt.Add(new SelectListItem() { Text ="Apto con restricciones", Value= "Apto con restricciones" });
+            LisApt.Add(new SelectListItem() { Text ="No apto",Value="No apto"});
+            ViewBag.Aptitu = LisApt;
             return View(Medi);
         }
 

@@ -13,7 +13,7 @@ namespace SG_ASP_1.Models
 
         public int? AtenId { get; set; }
 
-[Display(Name ="Examenes Completos")]
+[Display(Name ="Examenes Incompletos")]
         public bool ExaCom { get; set; }
 
         [StringLength(20)]

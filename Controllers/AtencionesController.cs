@@ -19,20 +19,20 @@ namespace SG_ASP_1.Controllers
         private SG_ASP_1Context db = new SG_ASP_1Context();
       
         // GET: Atenciones
-        public ActionResult Index(DateTime? FecIni, DateTime? FecFin, string BuscarNombre, string Dni, string Empres)
+        public ActionResult Index(DateTime? FecIni, DateTime? FecFin, string BuscarNombre, string Dni, string Empres, string SubCon)
         {
             var user = HttpContext.User;
             string nombre = user.Identity.Name;
 
-            var med = db.Database.SqlQuery<string>(string.Format("select Medico from AspNetUsers where UserName = '{0}'", nombre)).ToList();
-            string medico = null;
-            if (med.Count>0)
-            {
-                foreach (var item in med)
-                {
-                    medico = item;
-                }
-            }
+            //var med = db.Database.SqlQuery<string>(string.Format("select Medico from AspNetUsers where UserName = '{0}'", nombre)).ToList();
+            //string medico = null;
+            //if (med.Count>0)
+            //{
+            //    foreach (var item in med)
+            //    {
+            //        medico = item;
+            //    }
+            //}
 
             var atenciones = db.Atenciones.Include(a => a.Medicos);
             atenciones = from cr in db.Atenciones select cr;
@@ -60,13 +60,18 @@ namespace SG_ASP_1.Controllers
                 atenciones = atenciones.Where(c => c.Empres.Contains(Empres));
             }
 
-            if (!String.IsNullOrEmpty(medico))
-            {
-                if (medico!="SM")
-                {
-                    atenciones = atenciones.Where(c => c.Medico.Contains(medico));
-                }
+            //if (!String.IsNullOrEmpty(medico))
+            //{
+            //    if (medico!="SM")
+            //    {
+            //        atenciones = atenciones.Where(c => c.Medico.Contains(medico));
+            //    }
                 
+            //}
+
+            if (!string.IsNullOrEmpty(SubCon))
+            {
+                atenciones = atenciones.Where(c => c.SubCon.Contains(SubCon));
             }
             return View(atenciones.ToList());
         }
