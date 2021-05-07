@@ -66,10 +66,20 @@ namespace SG_ASP_1.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Auditoria,Admin")]
-        public ActionResult Create([Bind(Include = "Id,AtenId,ExaCom,ExaCom1,DatInc,DatInc1,AptErr,AptErr1,FaFiMe,FaFiMe1,FaFiPa,FaFiPa1,Restri,Restri1,Contro,Contro1,Diagno,Diagno1,ErrLle,ErrLle1,ObNoRe,EmSnOb,EmSnOb1,OmiInt,OmiInt1,HorAud,FecAud,Alerta,UserName,Medico")] Auditoria auditoria)
+        public ActionResult Create(AuditoriaViewModel auditoriaViewModel)
         {
+            Auditoria auditoria = auditoriaViewModel.auditoria;
             if (ModelState.IsValid)
             {
+                if (auditoriaViewModel.SelectExaMed!=null)
+                {
+                    foreach (var item in auditoriaViewModel.SelectExaMed)
+                    {
+                        ExaMedico exaMedico = db.ExaMedicoes.Where(t => t.Id == item).First();
+                        auditoria.ExaMedicos.Add(exaMedico);
+                    }
+                }
+
                 if (string.IsNullOrEmpty(auditoria.Medico))
                 {
                     auditoria.Medico = "SM";
